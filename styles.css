@@ -1,52 +1,154 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conceptos Básicos - ECG Assist</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">ECG Assist</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="conceptos-basicos.html">Conceptos Básicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+/* CardioGo — tema minimalista y redondeado */
 
-    <div class="container mt-4">
-        <h1 class="mb-4">Conceptos Básicos de ECG</h1>
-        <p class="lead">Módulo educativo que explica cómo leer un ECG paso a paso.</p>
+/* Paleta y tokens */
+:root {
+  --brand: #0ea5e9;
+  --brand-dark: #0b82b7;
+  --bg: #f7fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card-bg: #ffffff;
 
-        <div class="accordion" id="conceptosBasicosAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading1">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                        Sistema de conducción cardíaca
-                    </button>
-                </h2>
-                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#conceptosBasicosAccordion">
-                    <div class="accordion-body">
-                        <p>Explicación de nodo SA, nodo AV, haz de His, ramas, fibras de Purkinje.</p>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Conductionsystemoftheheart.png/300px-Conductionsystemoftheheart.png" alt="Sistema de conducción cardíaca" class="img-fluid mb-3">
-                        <p>El sistema de conducción cardíaca es una red especializada de células que generan y conducen impulsos eléctricos a través del corazón, coordinando su contracción. Los componentes principales son:</p>
-                        <ul>
-                            <li><strong>Nodo Sinoauricular (SA):</strong> El marcapasos natural del corazón, ubicado en la aurícula derecha.</li>
-                            <li><strong>Nodo Auriculoventricular (AV):</strong> Retrasa el impulso eléctrico antes de pasar a los ventrículos.</li>
-                            <li><strong>Haz de His
+  --radius: 16px;
+  --radius-lg: 24px;
+
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+  /* Override Bootstrap primary */
+  --bs-primary: var(--brand);
+  --bs-primary-rgb: 14, 165, 233;
+}
+
+/* Base */
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navbar */
+.navbar {
+  border-radius: var(--radius-lg);
+  margin: 12px auto 20px;
+  box-shadow: var(--shadow);
+}
+.navbar .navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.navbar .nav-link {
+  border-radius: 999px;
+  padding: 0.375rem 0.75rem;
+}
+
+/* Hero/Jumbotron */
+.jumbotron {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+.jumbotron .display-4 {
+  letter-spacing: 0.2px;
+}
+.jumbotron .lead {
+  color: var(--muted);
+}
+hr.my-4 {
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  background: var(--card-bg);
+}
+.card-header {
+  border: none;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  background: linear-gradient(90deg, rgba(14,165,233,0.14), rgba(14,165,233,0.06));
+  color: #0f172a;
+}
+.card-body {
+  padding: 1rem 1.25rem;
+}
+
+/* Botones */
+.btn {
+  border-radius: 9999px;
+  padding: 0.55rem 1rem;
+}
+.btn-primary {
+  background-color: var(--brand);
+  border-color: var(--brand);
+}
+.btn-primary:hover {
+  background-color: var(--brand-dark);
+  border-color: var(--brand-dark);
+}
+.btn-outline-primary {
+  color: var(--brand);
+  border-color: var(--brand);
+}
+.btn-outline-primary:hover {
+  background-color: var(--brand);
+  color: #fff;
+}
+
+/* Formularios */
+.form-control,
+.form-select {
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 0.25rem rgba(14,165,233,0.15);
+}
+
+/* Imágenes */
+.img-fluid {
+  border-radius: var(--radius);
+}
+.img-fluid.border {
+  border-color: #e2e8f0 !important;
+}
+
+/* Accordion */
+.accordion-item {
+  border: none;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.accordion-button {
+  border-radius: 0;
+}
+.accordion-button:not(.collapsed) {
+  color: #0f172a;
+  background-color: rgba(14,165,233,0.08);
+}
+.accordion-body {
+  background: #fff;
+}
+
+/* Alerts */
+.alert {
+  border-radius: var(--radius);
+}
+
+/* Utilidades mínimas */
+.rounded-xl {
+  border-radius: var(--radius-lg) !important;
+}
+.shadow-soft {
+  box-shadow: var(--shadow) !important;
+}

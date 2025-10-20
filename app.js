@@ -21,6 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const analizarECGBtn = document.getElementById('analizarECG');
         analizarECGBtn.addEventListener('click', analizarECG);
+        
+        // Nuevos botones para análisis con ChatGPT y búsqueda de imágenes similares
+        const enviarChatGPTBtn = document.getElementById('enviarChatGPT');
+        if (enviarChatGPTBtn) {
+            enviarChatGPTBtn.addEventListener('click', enviarAChatGPT);
+        }
+        
+        const buscarImagenesSimilaresBtn = document.getElementById('buscarImagenesSimilares');
+        if (buscarImagenesSimilaresBtn) {
+            buscarImagenesSimilaresBtn.addEventListener('click', buscarImagenesSimilares);
+        }
+        
+        // Botón para guardar análisis como PDF
+        const guardarAnalisisPDFBtn = document.getElementById('guardarAnalisisPDF');
+        if (guardarAnalisisPDFBtn) {
+            guardarAnalisisPDFBtn.addEventListener('click', guardarAnalisisPDF);
+        }
     }
 
     // Verificar si estamos en la página de copiar informe
@@ -137,8 +154,10 @@ function capturarImagen() {
     imgElement.alt = 'ECG capturado';
     previewContainer.appendChild(imgElement);
     
-    // Habilitar el botón de análisis
+    // Habilitar todos los botones de análisis
     document.getElementById('analizarECG').disabled = false;
+    document.getElementById('enviarChatGPT').disabled = false;
+    document.getElementById('buscarImagenesSimilares').disabled = false;
 }
 
 // Función para mostrar vista previa de imagen subida
@@ -158,8 +177,10 @@ function mostrarVistaPrevia(event) {
             imgElement.alt = 'ECG subido';
             previewContainer.appendChild(imgElement);
             
-            // Habilitar el botón de análisis
+            // Habilitar todos los botones de análisis
             document.getElementById('analizarECG').disabled = false;
+            document.getElementById('enviarChatGPT').disabled = false;
+            document.getElementById('buscarImagenesSimilares').disabled = false;
         };
         reader.readAsDataURL(file);
     }
@@ -171,6 +192,8 @@ function analizarECG() {
     // Para esta demo, mostraremos resultados simulados
     
     document.getElementById('resultadoAnalisis').classList.remove('d-none');
+    document.getElementById('chatGPTAnalisis').classList.add('d-none');
+    document.getElementById('imagenesEncontradas').classList.add('d-none');
     
     // Simular carga
     const listaPatrones = document.getElementById('listaPatrones');
@@ -184,4 +207,141 @@ function analizarECG() {
             <li><strong>Baja probabilidad (25%):</strong> Alteraciones inespecíficas de la repolarización</li>
         `;
     }, 2000);
+}
+
+// Función para enviar la imagen a ChatGPT para análisis
+function enviarAChatGPT() {
+    // Mostrar el contenedor de análisis de ChatGPT
+    document.getElementById('chatGPTAnalisis').classList.remove('d-none');
+    document.getElementById('resultadoAnalisis').classList.add('d-none');
+    document.getElementById('imagenesEncontradas').classList.add('d-none');
+    
+    // En una aplicación real, aquí se enviaría la imagen a la API de ChatGPT
+    // Para esta demo, mostraremos resultados simulados
+    
+    // Simular carga
+    const chatGPTRespuesta = document.getElementById('chatGPTRespuesta');
+    chatGPTRespuesta.innerHTML = `
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p>Consultando a ChatGPT...</p>
+    `;
+    
+    // Después de 3 segundos, mostrar resultados simulados
+    setTimeout(() => {
+        const respuestaSimulada = `
+            <h5>Análisis del ECG:</h5>
+            <p>Basado en la imagen proporcionada, este ECG muestra un <strong>ritmo sinusal normal</strong> con una frecuencia cardíaca de aproximadamente 75 latidos por minuto.</p>
+            
+            <h5>Características observadas:</h5>
+            <ul>
+                <li>Ritmo regular con ondas P presentes antes de cada complejo QRS</li>
+                <li>Intervalo PR normal (aproximadamente 160 ms)</li>
+                <li>Duración del QRS normal (aproximadamente 90 ms)</li>
+                <li>No hay elevación o depresión significativa del segmento ST</li>
+                <li>Ondas T de morfología normal</li>
+                <li>No hay signos de hipertrofia ventricular</li>
+            </ul>
+            
+            <h5>Interpretación:</h5>
+            <p>Este ECG se considera dentro de los límites normales sin evidencia de patología cardíaca significativa. Recomendaría correlacionar estos hallazgos con la historia clínica y el examen físico del paciente.</p>
+            
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#chatGPTModal">
+                Ver análisis completo
+            </button>
+        `;
+        
+        chatGPTRespuesta.innerHTML = respuestaSimulada;
+        
+        // También actualizar el contenido del modal
+        document.getElementById('chatGPTModalContent').innerHTML = respuestaSimulada + `
+            <h5 class="mt-4">Diagnóstico diferencial:</h5>
+            <ul>
+                <li>ECG normal</li>
+                <li>Variante normal</li>
+                <li>Posibles cambios no específicos que requieren correlación clínica</li>
+            </ul>
+            
+            <h5>Recomendaciones:</h5>
+            <ul>
+                <li>Si el paciente está asintomático y este es un ECG de rutina, no se requieren más estudios.</li>
+                <li>Si el paciente presenta síntomas cardíacos, considerar evaluación adicional según la presentación clínica.</li>
+                <li>Seguimiento regular según factores de riesgo cardiovascular del paciente.</li>
+            </ul>
+            
+            <div class="alert alert-info mt-3">
+                <strong>Nota:</strong> Este análisis es generado por IA y no sustituye la interpretación de un profesional médico calificado. Siempre consulte con un cardiólogo para la interpretación definitiva de un ECG.
+            </div>
+        `;
+    }, 3000);
+}
+
+// Función para buscar imágenes similares
+function buscarImagenesSimilares() {
+    // Mostrar el contenedor de imágenes encontradas
+    document.getElementById('imagenesEncontradas').classList.remove('d-none');
+    document.getElementById('resultadoAnalisis').classList.add('d-none');
+    document.getElementById('chatGPTAnalisis').classList.add('d-none');
+    
+    // En una aplicación real, aquí se enviaría la imagen a un servicio de búsqueda de imágenes
+    // Para esta demo, mostraremos resultados simulados
+    
+    const galeriaImagenes = document.getElementById('galeriaImagenes');
+    galeriaImagenes.innerHTML = `
+        <div class="col-12 text-center mb-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Buscando imágenes similares...</span>
+            </div>
+            <p>Buscando imágenes similares en la web...</p>
+        </div>
+    `;
+    
+    // Después de 3 segundos, mostrar resultados simulados
+    setTimeout(() => {
+        galeriaImagenes.innerHTML = `
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://litfl.com/wp-content/uploads/2018/08/normal-sinus-rhythm-ecg.jpg" class="card-img-top" alt="ECG similar 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Ritmo sinusal normal</h5>
+                        <p class="card-text">Coincidencia: 92%</p>
+                        <a href="https://litfl.com/normal-sinus-rhythm-ecg-library/" class="btn btn-primary btn-sm" target="_blank">Ver fuente</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://litfl.com/wp-content/uploads/2018/08/ECG-Sinus-bradycardia.jpg" class="card-img-top" alt="ECG similar 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Bradicardia sinusal</h5>
+                        <p class="card-text">Coincidencia: 78%</p>
+                        <a href="https://litfl.com/sinus-bradycardia-ecg-library/" class="btn btn-primary btn-sm" target="_blank">Ver fuente</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://litfl.com/wp-content/uploads/2018/08/ECG-Left-bundle-branch-block-LBBB.jpg" class="card-img-top" alt="ECG similar 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Bloqueo de rama izquierda</h5>
+                        <p class="card-text">Coincidencia: 65%</p>
+                        <a href="https://litfl.com/left-bundle-branch-block-lbbb-ecg-library/" class="btn btn-primary btn-sm" target="_blank">Ver fuente</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <strong>Nota:</strong> Las imágenes mostradas son solo ejemplos y no representan un diagnóstico médico. Consulte siempre con un profesional de la salud para la interpretación correcta de un ECG.
+                </div>
+            </div>
+        `;
+    }, 3000);
+}
+
+// Función para guardar el análisis como PDF
+function guardarAnalisisPDF() {
+    // En una aplicación real, aquí se generaría un PDF con el análisis
+    // Para esta demo, mostraremos un mensaje de simulación
+    alert('Funcionalidad de guardar como PDF simulada. En una aplicación real, se generaría un PDF con el análisis completo.');
 }

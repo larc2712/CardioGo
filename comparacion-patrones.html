@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparación de Patrones - ECG Assist</title>
+    <title>Comparación de Patrones - CardioGo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="index.html">ECG Assist</a>
+            <a class="navbar-brand" href="index.html">CardioGo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,7 +32,7 @@
 
     <div class="container mt-4">
         <h1 class="mb-4">Comparación de Patrones ECG</h1>
-        <p class="lead">Tome una fotografía de un ECG y compare con patrones conocidos.</p>
+        <p class="lead">Tome una fotografía de un ECG y obtenga un análisis con ayuda de IA.</p>
 
         <div class="row">
             <div class="col-md-6 mb-4">
@@ -65,7 +65,11 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <button type="button" class="btn btn-primary" id="analizarECG" disabled>Analizar ECG</button>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary" id="analizarECG" disabled>Analizar ECG localmente</button>
+                                <button type="button" class="btn btn-success" id="enviarChatGPT" disabled>Analizar con ChatGPT</button>
+                                <button type="button" class="btn btn-info" id="buscarImagenesSimilares" disabled>Buscar imágenes similares</button>
+                            </div>
                         </div>
                         <div id="resultadoAnalisis" class="d-none">
                             <h5>Resultados del análisis:</h5>
@@ -75,13 +79,42 @@
                                     <li>Cargando resultados...</li>
                                 </ul>
                             </div>
-                            <h5>Recursos adicionales:</h5>
-                            <ul>
-                                <li><a href="https://physionet.org/" target="_blank">PhysioNet</a> - Base de datos de señales fisiológicas</li>
-                                <li><a href="https://ecgwaves.com/" target="_blank">ECG Waves</a> - Biblioteca de ECG con explicaciones</li>
-                                <li><a href="https://litfl.com/ecg-library/" target="_blank">Life in the Fast Lane ECG Library</a> - Biblioteca de casos clínicos</li>
-                            </ul>
                         </div>
+                        <div id="chatGPTAnalisis" class="d-none">
+                            <h5>Análisis de ChatGPT:</h5>
+                            <div class="alert alert-success">
+                                <div id="chatGPTRespuesta">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                    <p>Consultando a ChatGPT...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="imagenesEncontradas" class="d-none">
+                            <h5>Imágenes similares encontradas:</h5>
+                            <div id="galeriaImagenes" class="row">
+                                <!-- Las imágenes similares se cargarán aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Recursos y referencias
+                    </div>
+                    <div class="card-body">
+                        <h5>Recursos adicionales:</h5>
+                        <ul>
+                            <li><a href="https://physionet.org/" target="_blank">PhysioNet</a> - Base de datos de señales fisiológicas</li>
+                            <li><a href="https://ecgwaves.com/" target="_blank">ECG Waves</a> - Biblioteca de ECG con explicaciones</li>
+                            <li><a href="https://litfl.com/ecg-library/" target="_blank">Life in the Fast Lane ECG Library</a> - Biblioteca de casos clínicos</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -124,6 +157,27 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar resultados de ChatGPT -->
+    <div class="modal fade" id="chatGPTModal" tabindex="-1" aria-labelledby="chatGPTModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chatGPTModalLabel">Análisis detallado de ChatGPT</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="chatGPTModalContent">
+                        <!-- El contenido del análisis de ChatGPT se mostrará aquí -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="guardarAnalisisPDF">Guardar como PDF</button>
                 </div>
             </div>
         </div>

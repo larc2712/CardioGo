@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conceptos Básicos - ECG Assist</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Conceptos Básicos - CardioGo</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Tu CSS (opcional) -->
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="index.html">ECG Assist</a>
+            <a class="navbar-brand" href="index.html">CardioGo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="conceptos-basicos.html">Conceptos Básicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Contenido -->
     <div class="container mt-4">
-        <h1 class="mb-4">Conceptos Básicos de ECG</h1>
+        <h1 class="mb-2">Conceptos Básicos de ECG</h1>
         <p class="lead">Módulo educativo que explica cómo leer un ECG paso a paso.</p>
 
         <div class="accordion" id="conceptosBasicosAccordion">
+
+            <!-- 1) Sistema de conducción cardíaca -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading1">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -43,19 +43,105 @@
                 </h2>
                 <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#conceptosBasicosAccordion">
                     <div class="accordion-body">
-                        <p>Explicación de nodo SA, nodo AV, haz de His, ramas, fibras de Purkinje.</p>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Conductionsystemoftheheart.png/300px-Conductionsystemoftheheart.png" alt="Sistema de conducción cardíaca" class="img-fluid mb-3">
-                        <p>El sistema de conducción cardíaca es una red especializada de células que generan y conducen impulsos eléctricos a través del corazón, coordinando su contracción. Los componentes principales son:</p>
-                        <ul>
-                            <li><strong>Nodo Sinoauricular (SA):</strong> El marcapasos natural del corazón, ubicado en la aurícula derecha.</li>
-                            <li><strong>Nodo Auriculoventricular (AV):</strong> Retrasa el impulso eléctrico antes de pasar a los ventrículos.</li>
-                            <li><strong>Haz de His:</strong> Conduce el impulso desde el nodo AV hacia los ventrículos.</li>
-                            <li><strong>Ramas del Haz:</strong> Dividen el impulso hacia los ventrículos derecho e izquierdo.</li>
-                            <li><strong>Fibras de Purkinje:</strong> Distribuyen rápidamente el impulso a través del miocardio ventricular.</li>
-                        </ul>
+                        <!-- Imagen libre (Unsplash) para ilustrar trazos de conducción -->
+                        <figure class="figure mb-4">
+                            <img src="https://source.unsplash.com/oCSol-lBtVA/1200x800"
+                                 alt="Trazo de latido cardíaco en monitor"
+                                 class="figure-img img-fluid rounded shadow-sm"
+                                 loading="lazy" width="1200" height="800">
+                            <figcaption class="figure-caption text-center">
+                                Visualización de latido cardíaco con trazo tipo ECG (Unsplash).
+                            </figcaption>
+                        </figure>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h5>Anatomía del Sistema de Conducción</h5>
+                                <!-- SVG: Mapa de nodos y vías -->
+                                <svg viewBox="0 0 600 320" role="img" class="img-fluid border rounded" aria-labelledby="svgConduccionTitle svgConduccionDesc">
+                                    <title id="svgConduccionTitle">Diagrama del sistema de conducción cardíaca</title>
+                                    <desc id="svgConduccionDesc">Nodos SA y AV, Haz de His, ramas derecha e izquierda y fibras de Purkinje</desc>
+                                    <!-- Fondo corazón simplificado -->
+                                    <defs>
+                                        <radialGradient id="heartGrad" cx="50%" cy="40%" r="60%">
+                                            <stop offset="0%" stop-color="#ffe6e6"/>
+                                            <stop offset="100%" stop-color="#ffd1d1"/>
+                                        </radialGradient>
+                                    </defs>
+                                    <path d="M300,40
+                                             C380,40 450,90 460,160
+                                             C470,220 430,260 380,290
+                                             C330,315 270,315 220,290
+                                             C170,260 130,220 140,160
+                                             C150,90 220,40 300,40 Z"
+                                          fill="url(#heartGrad)" stroke="#cc8b8b" stroke-width="2"/>
+                                    <!-- Nodos -->
+                                    <circle cx="220" cy="120" r="10" fill="#ff3b3b"/>
+                                    <text x="235" y="125" font-size="14" fill="#333">Nodo SA</text>
+
+                                    <circle cx="270" cy="170" r="10" fill="#ffbf00"/>
+                                    <text x="285" y="175" font-size="14" fill="#333">Nodo AV</text>
+
+                                    <!-- Haz de His y ramas -->
+                                    <line x1="270" y1="170" x2="320" y2="190" stroke="#3b82f6" stroke-width="4"/>
+                                    <text x="325" y="195" font-size="13" fill="#333">Haz de His</text>
+
+                                    <line x1="320" y1="190" x2="380" y2="210" stroke="#16a34a" stroke-width="5"/>
+                                    <text x="385" y="215" font-size="13" fill="#333">Rama Izq.</text>
+
+                                    <line x1="320" y1="190" x2="300" y2="230" stroke="#16a34a" stroke-width="5"/>
+                                    <text x="305" y="235" font-size="13" fill="#333">Rama Der.</text>
+
+                                    <!-- Purkinje (ramificaciones finas) -->
+                                    <g stroke="#8b5cf6" stroke-width="2">
+                                        <line x1="380" y1="210" x2="410" y2="240"/>
+                                        <line x1="380" y1="210" x2="390" y2="250"/>
+                                        <line x1="300" y1="230" x2="280" y2="260"/>
+                                        <line x1="300" y1="230" x2="320" y2="260"/>
+                                    </g>
+                                    <text x="410" y="245" font-size="13" fill="#333">Purkinje</text>
+                                </svg>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Correlación ECG - Actividad Eléctrica</h5>
+                                <!-- SVG: P-QRS-T correlacionado -->
+                                <svg viewBox="0 0 600 220" role="img" class="img-fluid border rounded" aria-labelledby="svgCorrelacionTitle svgCorrelacionDesc">
+                                    <title id="svgCorrelacionTitle">Correlación de ondas ECG con conducción</title>
+                                    <desc id="svgCorrelacionDesc">Onda P, complejo QRS y onda T con etiquetas</desc>
+                                    <!-- Línea base -->
+                                    <line x1="10" y1="150" x2="590" y2="150" stroke="#bbb" stroke-width="2"/>
+                                    <!-- Onda P -->
+                                    <path d="M70,150 Q85,120 100,150" fill="none" stroke="#2563eb" stroke-width="3"/>
+                                    <text x="85" y="110" font-size="13" fill="#2563eb">Onda P (despolarización auricular)</text>
+                                    <!-- QRS -->
+                                    <path d="M130,150 L140,160 L150,120 L160,180 L170,150" fill="none" stroke="#ef4444" stroke-width="3"/>
+                                    <text x="150" y="105" font-size="13" fill="#ef4444">QRS (despolarización ventricular)</text>
+                                    <!-- T -->
+                                    <path d="M210,150 Q240,110 270,150" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                    <text x="240" y="105" font-size="13" fill="#22c55e">Onda T (repolarización ventricular)</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2">Componentes del Sistema de Conducción</h6>
+                                    <ul class="mb-0">
+                                        <li><strong>Nodo SA:</strong> marcapasos natural, 60–100 lpm.</li>
+                                        <li><strong>Nodo AV:</strong> retardo ~0.1 s antes de ventrículos.</li>
+                                        <li><strong>Haz de His:</strong> conduce al septo interventricular.</li>
+                                        <li><strong>Ramas:</strong> derecha e izquierda hacia ventrículos.</li>
+                                        <li><strong>Purkinje:</strong> distribución rápida en miocardio.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- 2) Papel electrocardiográfico -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading2">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
@@ -64,20 +150,103 @@
                 </h2>
                 <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#conceptosBasicosAccordion">
                     <div class="accordion-body">
-                        <p>Cada cuadro pequeño equivale a 0.04 s en el eje horizontal y 0.1 mV en el eje vertical.</p>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/EKG_Grid.svg/300px-EKG_Grid.svg.png" alt="Papel electrocardiográfico" class="img-fluid mb-3">
-                        <p>El papel de ECG está diseñado con una cuadrícula estandarizada para facilitar la medición precisa:</p>
-                        <ul>
-                            <li>Cuadros pequeños: 1 mm × 1 mm</li>
-                            <li>Cuadros grandes: 5 mm × 5 mm (formados por 5 cuadros pequeños)</li>
-                            <li>Eje horizontal (tiempo): cada cuadro pequeño = 0.04 segundos</li>
-                            <li>Eje vertical (voltaje): cada cuadro pequeño = 0.1 mV</li>
-                            <li>Velocidad estándar: 25 mm/segundo</li>
-                            <li>Calibración estándar: 10 mm/mV</li>
-                        </ul>
+                        <!-- Imagen libre (Unsplash) para ilustrar papel/monitores de ECG -->
+                        <figure class="figure mb-4">
+                            <img src="https://source.unsplash.com/0lrJo37r6Nk/1200x800"
+                                 alt="Electrocardiograma en monitor digital"
+                                 class="figure-img img-fluid rounded shadow-sm"
+                                 loading="lazy" width="1200" height="800">
+                            <figcaption class="figure-caption text-center">
+                                Electrocardiograma en monitor digital (Unsplash).
+                            </figcaption>
+                        </figure>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h5>Cuadrícula estándar</h5>
+                                <!-- SVG: Grid del papel ECG -->
+                                <svg viewBox="0 0 420 260" role="img" class="img-fluid border rounded" aria-labelledby="svgGridTitle svgGridDesc">
+                                    <title id="svgGridTitle">Cuadrícula del papel ECG</title>
+                                    <desc id="svgGridDesc">Cuadros pequeños (1 mm) y grandes (5 mm) con equivalencias</desc>
+                                    <defs>
+                                        <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#e5e5e5" stroke-width="1"/>
+                                        </pattern>
+                                        <pattern id="bigGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+                                            <rect width="50" height="50" fill="url(#smallGrid)"/>
+                                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#c9c9c9" stroke-width="1.5"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect x="0" y="0" width="420" height="260" fill="url(#bigGrid)"/>
+                                    <rect x="10" y="10" width="200" height="100" fill="none" stroke="#8f8f8f" stroke-width="2"/>
+                                    <text x="15" y="30" font-size="12" fill="#333">Cuadro grande = 5 mm (0.20 s / 0.5 mV)</text>
+                                    <text x="15" y="50" font-size="12" fill="#333">Cuadro pequeño = 1 mm (0.04 s / 0.1 mV)</text>
+                                    <text x="15" y="70" font-size="12" fill="#333">Velocidad: 25 mm/s | Calibración: 10 mm/mV</text>
+                                </svg>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Medición sobre la cuadrícula</h5>
+                                <!-- SVG: Medición de intervalos -->
+                                <svg viewBox="0 0 420 260" role="img" class="img-fluid border rounded" aria-labelledby="svgMeasureTitle svgMeasureDesc">
+                                    <title id="svgMeasureTitle">Ejemplo de medición sobre cuadrícula</title>
+                                    <desc id="svgMeasureDesc">Uso de cuadros pequeños para medir PR y QRS</desc>
+                                    <!-- Fondo grid -->
+                                    <defs>
+                                        <pattern id="smallGrid2" width="10" height="10" patternUnits="userSpaceOnUse">
+                                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#eee" stroke-width="1"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect x="0" y="0" width="420" height="260" fill="url(#smallGrid2)"/>
+                                    <!-- Línea base -->
+                                    <line x1="10" y1="180" x2="410" y2="180" stroke="#bbb" stroke-width="2"/>
+                                    <!-- Onda P -->
+                                    <path d="M40,180 Q60,160 80,180" fill="none" stroke="#2563eb" stroke-width="3"/>
+                                    <!-- QRS -->
+                                    <path d="M110,180 L120,190 L130,140 L140,200 L150,180" fill="none" stroke="#ef4444" stroke-width="3"/>
+                                    <!-- T -->
+                                    <path d="M180,180 Q210,150 240,180" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                    <!-- Regla PR -->
+                                    <line x1="40" y1="210" x2="110" y2="210" stroke="#333" stroke-width="2"/>
+                                    <text x="55" y="230" font-size="12" fill="#333">PR ≈ 4 cuadros pequeños = 0.16 s</text>
+                                    <!-- Regla QRS -->
+                                    <line x1="120" y1="210" x2="150" y2="210" stroke="#333" stroke-width="2"/>
+                                    <text x="120" y="230" font-size="12" fill="#333">QRS ≈ 3 cuadros pequeños = 0.12 s</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light"><strong>Medidas físicas</strong></div>
+                                    <div class="card-body">
+                                        <ul class="mb-0">
+                                            <li>Cuadro pequeño: 1 mm × 1 mm</li>
+                                            <li>Cuadro grande: 5 mm × 5 mm</li>
+                                            <li>Velocidad: 25 mm/seg</li>
+                                            <li>Calibración: 10 mm/mV</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light"><strong>Equivalencias</strong></div>
+                                    <div class="card-body">
+                                        <ul class="mb-0">
+                                            <li>Tiempo: 1 mm = 0.04 s | 5 mm = 0.20 s</li>
+                                            <li>Voltaje: 1 mm = 0.1 mV | 5 mm = 0.5 mV</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+            <!-- 3) Derivaciones -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading3">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
@@ -86,22 +255,109 @@
                 </h2>
                 <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#conceptosBasicosAccordion">
                     <div class="accordion-body">
-                        <p>Derivaciones bipolares (DI, DII, DIII), unipolares (aVR, aVL, aVF) y precordiales (V1–V6).</p>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/EKG_leads_and_axis.svg/300px-EKG_leads_and_axis.svg.png" alt="Derivaciones ECG" class="img-fluid mb-3">
-                        <p>Las derivaciones del ECG son diferentes "vistas" de la actividad eléctrica del corazón:</p>
-                        <h5>Derivaciones del plano frontal:</h5>
-                        <ul>
-                            <li><strong>Derivaciones bipolares (Einthoven):</strong> DI, DII, DIII</li>
-                            <li><strong>Derivaciones unipolares aumentadas:</strong> aVR, aVL, aVF</li>
-                        </ul>
-                        <h5>Derivaciones del plano horizontal:</h5>
-                        <ul>
-                            <li><strong>Derivaciones precordiales:</strong> V1, V2, V3, V4, V5, V6</li>
-                        </ul>
-                        <p>Cada derivación proporciona información sobre diferentes áreas del corazón.</p>
+                        <!-- Imagen libre (Unsplash) para apoyar explicación de derivaciones -->
+                        <figure class="figure mb-4">
+                            <img src="https://source.unsplash.com/beXUIzvxW-Q/1200x800"
+                                 alt="Pantalla de monitor con latido cardiaco y parámetros"
+                                 class="figure-img img-fluid rounded shadow-sm"
+                                 loading="lazy" width="1200" height="800">
+                            <figcaption class="figure-caption text-center">
+                                Monitor con lectura de ritmo y parámetros (Unsplash).
+                            </figcaption>
+                        </figure>
+
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <h5>Plano frontal (ejes)</h5>
+                                <!-- SVG: Ejes del plano frontal -->
+                                <svg viewBox="0 0 300 220" role="img" class="img-fluid border rounded" aria-labelledby="svgFrontalTitle svgFrontalDesc">
+                                    <title id="svgFrontalTitle">Derivaciones del plano frontal</title>
+                                    <desc id="svgFrontalDesc">DI, DII, DIII, aVR, aVL, aVF en el eje hexaxial</desc>
+                                    <circle cx="150" cy="110" r="80" fill="#f8fafc" stroke="#d1d5db"/>
+                                    <line x1="150" y1="30" x2="150" y2="190" stroke="#94a3b8"/>
+                                    <line x1="70" y1="110" x2="230" y2="110" stroke="#94a3b8"/>
+                                    <line x1="100" y1="60" x2="200" y2="160" stroke="#94a3b8"/>
+                                    <line x1="200" y1="60" x2="100" y2="160" stroke="#94a3b8"/>
+                                    <text x="230" y="105" font-size="12">DI (+)</text>
+                                    <text x="60" y="105" font-size="12">DI (-)</text>
+                                    <text x="140" y="45" font-size="12">aVF (-)</text>
+                                    <text x="140" y="205" font-size="12">aVF (+)</text>
+                                    <text x="205" y="70" font-size="12">aVL (+)</text>
+                                    <text x="95" y="70" font-size="12">aVR (-)</text>
+                                    <text x="95" y="175" font-size="12">aVL (-)</text>
+                                    <text x="205" y="175" font-size="12">aVR (+)</text>
+                                    <text x="200" y="155" font-size="12">DII (+)</text>
+                                    <text x="95" y="65" font-size="12">DIII (+)</text>
+                                </svg>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Plano horizontal (V1–V6)</h5>
+                                <!-- SVG: Posiciones precordiales -->
+                                <svg viewBox="0 0 300 220" role="img" class="img-fluid border rounded" aria-labelledby="svgPrecordialesTitle svgPrecordialesDesc">
+                                    <title id="svgPrecordialesTitle">Derivaciones precordiales V1–V6</title>
+                                    <desc id="svgPrecordialesDesc">Disposición esquemática sobre el tórax</desc>
+                                    <rect x="40" y="40" width="220" height="140" rx="8" fill="#f8fafc" stroke="#d1d5db"/>
+                                    <!-- Línea de esternón -->
+                                    <line x1="120" y1="45" x2="120" y2="175" stroke="#cbd5e1" stroke-dasharray="4,4"/>
+                                    <!-- V1–V6 -->
+                                    <circle cx="110" cy="90" r="8" fill="#0ea5e9"/><text x="95" y="85" font-size="12">V1</text>
+                                    <circle cx="130" cy="90" r="8" fill="#0ea5e9"/><text x="135" y="85" font-size="12">V2</text>
+                                    <circle cx="150" cy="110" r="8" fill="#0ea5e9"/><text x="155" y="105" font-size="12">V3</text>
+                                    <circle cx="170" cy="130" r="8" fill="#0ea5e9"/><text x="175" y="125" font-size="12">V4</text>
+                                    <circle cx="190" cy="130" r="8" fill="#0ea5e9"/><text x="195" y="125" font-size="12">V5</text>
+                                    <circle cx="210" cy="130" r="8" fill="#0ea5e9"/><text x="215" y="125" font-size="12">V6</text>
+                                    <text x="125" y="50" font-size="12">Esternón</text>
+                                    <text x="48" y="160" font-size="12">Línea medioclavicular ≈ V4</text>
+                                </svg>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Colocación de electrodos (básico)</h5>
+                                <!-- SVG: Esquema simple electrodos -->
+                                <svg viewBox="0 0 300 220" role="img" class="img-fluid border rounded" aria-labelledby="svgElectrodosTitle svgElectrodosDesc">
+                                    <title id="svgElectrodosTitle">Colocación básica de electrodos</title>
+                                    <desc id="svgElectrodosDesc">Torso estilizado y puntos de electrodos</desc>
+                                    <rect x="80" y="40" width="140" height="140" rx="20" fill="#f8fafc" stroke="#d1d5db"/>
+                                    <circle cx="120" cy="80" r="10" fill="#ef4444"/><text x="100" y="70" font-size="12">RA</text>
+                                    <circle cx="180" cy="80" r="10" fill="#3b82f6"/><text x="185" y="70" font-size="12">LA</text>
+                                    <circle cx="120" cy="160" r="10" fill="#22c55e"/><text x="100" y="175" font-size="12">RL</text>
+                                    <circle cx="180" cy="160" r="10" fill="#f59e0b"/><text x="185" y="175" font-size="12">LL</text>
+                                    <text x="90" y="195" font-size="12">RA/LA/LL/RL: extremidades</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light"><strong>Derivaciones del plano frontal</strong></div>
+                                    <div class="card-body">
+                                        <ul class="mb-0">
+                                            <li><strong>DI, DII, DIII</strong> (bipolares)</li>
+                                            <li><strong>aVR, aVL, aVF</strong> (unipolares aumentadas)</li>
+                                            <li>Áreas: lateral (DI, aVL), inferior (DII, DIII, aVF)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light"><strong>Derivaciones precordiales</strong></div>
+                                    <div class="card-body">
+                                        <ul class="mb-0">
+                                            <li><strong>V1–V2</strong> septales</li>
+                                            <li><strong>V3–V4</strong> anteriores</li>
+                                            <li><strong>V5–V6</strong> laterales</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+            <!-- 4) Frecuencia cardíaca -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading4">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
@@ -110,18 +366,113 @@
                 </h2>
                 <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#conceptosBasicosAccordion">
                     <div class="accordion-body">
-                        <p>Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número.</p>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/SinusRhythmLabels.svg/300px-SinusRhythmLabels.svg.png" alt="Frecuencia cardíaca" class="img-fluid mb-3">
-                        <p>Métodos para calcular la frecuencia cardíaca:</p>
-                        <ol>
-                            <li><strong>Método de 1500:</strong> Contar el número de cuadros pequeños entre dos complejos QRS consecutivos y dividir 1500 por ese número.</li>
-                            <li><strong>Método de 300:</strong> Contar el número de cuadros grandes entre dos complejos QRS consecutivos y dividir 300 por ese número.</li>
-                            <li><strong>Método de 6 segundos:</strong> Contar el número de complejos QRS en un intervalo de 30 cuadros grandes (6 segundos) y multiplicar por 10.</li>
-                        </ol>
-                        <p>Frecuencia normal: 60-100 latidos por minuto (lpm)</p>
+                        <!-- Imagen libre (Unsplash) para métodos de cálculo de FC -->
+                        <figure class="figure mb-4">
+                            <img src="https://source.unsplash.com/BvS7q4yFQt4/1200x800"
+                                 alt="Monitor con indicador de pulso"
+                                 class="figure-img img-fluid rounded shadow-sm"
+                                 loading="lazy" width="1200" height="800">
+                            <figcaption class="figure-caption text-center">
+                                Lectura de pulso/FC en monitor (Unsplash).
+                            </figcaption>
+                        </figure>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h5>Ritmo y QRS</h5>
+                                <!-- SVG: ECG repetido y R-R -->
+                                <svg viewBox="0 0 500 220" role="img" class="img-fluid border rounded" aria-labelledby="svgRRTitle svgRRDesc">
+                                    <title id="svgRRTitle">Medición del intervalo R-R</title>
+                                    <desc id="svgRRDesc">Calcular la frecuencia a partir de los cuadros entre QRS</desc>
+                                    <defs>
+                                        <pattern id="gridRR" width="10" height="10" patternUnits="userSpaceOnUse">
+                                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#eee" stroke-width="1"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect x="0" y="0" width="500" height="220" fill="url(#gridRR)"/>
+                                    <line x1="10" y1="160" x2="490" y2="160" stroke="#bbb" stroke-width="2"/>
+                                    <!-- Tres ciclos -->
+                                    <path d="M40,160 L50,170 L60,120 L70,180 L80,160
+                                             M140,160 L150,170 L160,120 L170,180 L180,160
+                                             M240,160 L250,170 L260,120 L270,180 L280,160"
+                                          fill="none" stroke="#ef4444" stroke-width="3"/>
+                                    <!-- Regla R-R -->
+                                    <line x1="40" y1="190" x2="140" y2="190" stroke="#333" stroke-width="2"/>
+                                    <text x="60" y="210" font-size="12" fill="#333">R-R: 25 cuadros = 1.0 s → 60 lpm</text>
+                                </svg>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Métodos de cálculo</h5>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <strong>Método 1500 (ritmo regular):</strong>
+                                                <ol class="mb-2">
+                                                    <li>Cuenta cuadros pequeños entre dos R.</li>
+                                                    <li>FC = 1500 ÷ cuadros pequeños.</li>
+                                                </ol>
+                                                <div class="bg-light p-2 rounded small">Ejemplo: 20 cuadros → 1500 ÷ 20 = 75 lpm</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <strong>Método 300 (práctico):</strong>
+                                                <ol class="mb-2">
+                                                    <li>Cuenta cuadros grandes entre dos R.</li>
+                                                    <li>FC = 300 ÷ cuadros grandes.</li>
+                                                </ol>
+                                                <div class="bg-light p-2 rounded small">Ejemplo: 4 cuadros grandes → 300 ÷ 4 = 75 lpm</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <strong>Método 6 segundos (ritmo irregular):</strong>
+                                                <ol class="mb-2">
+                                                    <li>Cuenta QRS en 30 cuadros grandes (6 s).</li>
+                                                    <li>Multiplica × 10.</li>
+                                                </ol>
+                                                <div class="bg-light p-2 rounded small">Ejemplo: 7 QRS → 7 × 10 = 70 lpm</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 g-3">
+                            <div class="col-md-4">
+                                <div class="text-center p-3 bg-info text-white rounded">
+                                    <h5 class="mb-1">Bradicardia</h5>
+                                    <p class="mb-0">&lt; 60 lpm</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3 bg-success text-white rounded">
+                                    <h5 class="mb-1">Normal</h5>
+                                    <p class="mb-0">60–100 lpm</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3 bg-danger text-white rounded">
+                                    <h5 class="mb-1">Taquicardia</h5>
+                                    <p class="mb-0">&gt; 100 lpm</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning mt-3 mb-0">
+                            Tip: En ritmos irregulares (p. ej., fibrilación auricular) usa el método de 6 segundos para una media más precisa.
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- 5) Intervalos normales -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading5">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
@@ -130,23 +481,118 @@
                 </h2>
                 <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#conceptosBasicosAccordion">
                     <div class="accordion-body">
-                        <p>PR: 120–200 ms, QRS: &lt;120 ms, QT corregido: &lt;440 ms en hombres y &lt;460 ms en mujeres.</p>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/EKG_Complex_en.svg/300px-EKG_Complex_en.svg.png" alt="Intervalos ECG" class="img-fluid mb-3">
-                        <p>Los intervalos normales en un ECG son:</p>
-                        <ul>
-                            <li><strong>Intervalo PR:</strong> 120-200 ms (3-5 cuadros pequeños)</li>
-                            <li><strong>Complejo QRS:</strong> &lt;120 ms (&lt;3 cuadros pequeños)</li>
-                            <li><strong>Intervalo QT:</strong> Varía con la frecuencia cardíaca</li>
-                            <li><strong>QT corregido (QTc):</strong> &lt;440 ms en hombres, &lt;460 ms en mujeres</li>
-                            <li><strong>Segmento ST:</strong> Isoeléctrico (al mismo nivel que la línea de base)</li>
-                        </ul>
-                        <p>Alteraciones en estos intervalos pueden indicar diversas patologías cardíacas.</p>
+                        <!-- Imagen libre (Unsplash) para apoyar conceptos de intervalos -->
+                        <figure class="figure mb-4">
+                            <img src="https://source.unsplash.com/KgLtFCgfC28/1200x800"
+                                 alt="Representación digital de corazón en pantalla"
+                                 class="figure-img img-fluid rounded shadow-sm"
+                                 loading="lazy" width="1200" height="800">
+                            <figcaption class="figure-caption text-center">
+                                Corazón y señales digitales (Unsplash).
+                            </figcaption>
+                        </figure>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h5>Complejo ECG (P-QRS-T)</h5>
+                                <!-- SVG: Complejo con etiquetas -->
+                                <svg viewBox="0 0 500 240" role="img" class="img-fluid border rounded" aria-labelledby="svgComplejoTitle svgComplejoDesc">
+                                    <title id="svgComplejoTitle">Complejo ECG con intervalos</title>
+                                    <desc id="svgComplejoDesc">PR, QRS y QT con medidas orientativas</desc>
+                                    <line x1="10" y1="180" x2="490" y2="180" stroke="#bbb" stroke-width="2"/>
+                                    <path d="M40,180 Q60,160 80,180" fill="none" stroke="#2563eb" stroke-width="3"/>
+                                    <path d="M110,180 L120,190 L130,140 L140,200 L150,180" fill="none" stroke="#ef4444" stroke-width="3"/>
+                                    <path d="M180,180 Q210,150 240,180" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                    <!-- PR -->
+                                    <line x1="40" y1="205" x2="110" y2="205" stroke="#333" stroke-width="2"/>
+                                    <text x="60" y="225" font-size="12" fill="#333">PR: 120–200 ms</text>
+                                    <!-- QRS -->
+                                    <line x1="120" y1="205" x2="150" y2="205" stroke="#333" stroke-width="2"/>
+                                    <text x="120" y="225" font-size="12" fill="#333">QRS: &lt; 120 ms</text>
+                                    <!-- QT -->
+                                    <line x1="110" y1="145" x2="240" y2="145" stroke="#333" stroke-width="2"/>
+                                    <text x="150" y="135" font-size="12" fill="#333">QT (corrige con QTc)</text>
+                                </svg>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light"><strong>Valores de referencia</strong></div>
+                                    <div class="card-body">
+                                        <ul class="mb-2">
+                                            <li><strong>PR:</strong> 120–200 ms (3–5 cuadros pequeños)</li>
+                                            <li><strong>QRS:</strong> &lt; 120 ms (&lt; 3 cuadros pequeños)</li>
+                                            <li><strong>QTc:</strong> &lt; 440 ms (♂) / &lt; 460 ms (♀)</li>
+                                            <li><strong>ST:</strong> isoeléctrico (línea de base)</li>
+                                        </ul>
+                                        <div class="bg-light p-2 rounded small">
+                                            QTc (Bazett): QT / √RR — Ejemplo: QT 400 ms, RR 1.0 s → QTc 400 ms
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="text-danger">PR prolongado</h6>
+                                        <!-- SVG mini -->
+                                        <svg viewBox="0 0 220 140" class="img-fluid border rounded">
+                                            <line x1="10" y1="90" x2="210" y2="90" stroke="#bbb" stroke-width="2"/>
+                                            <path d="M20,90 Q50,70 80,90" fill="none" stroke="#2563eb" stroke-width="3"/>
+                                            <line x1="20" y1="115" x2="110" y2="115" stroke="#333" stroke-width="2"/>
+                                            <text x="30" y="135" font-size="12">PR &gt; 200 ms</text>
+                                        </svg>
+                                        <p class="small mb-0">Bloqueo AV 1er grado</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="text-warning">QRS ancho</h6>
+                                        <!-- SVG mini -->
+                                        <svg viewBox="0 0 220 140" class="img-fluid border rounded">
+                                            <line x1="10" y1="90" x2="210" y2="90" stroke="#bbb" stroke-width="2"/>
+                                            <path d="M90,90 L100,100 L110,60 L120,120 L130,60 L140,120 L150,90" fill="none" stroke="#ef4444" stroke-width="3"/>
+                                            <line x1="100" y1="115" x2="150" y2="115" stroke="#333" stroke-width="2"/>
+                                            <text x="105" y="135" font-size="12">QRS &gt; 120 ms</text>
+                                        </svg>
+                                        <p class="small mb-0">Bloqueo de rama</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="text-info">QT prolongado</h6>
+                                        <!-- SVG mini -->
+                                        <svg viewBox="0 0 220 140" class="img-fluid border rounded">
+                                            <line x1="10" y1="90" x2="210" y2="90" stroke="#bbb" stroke-width="2"/>
+                                            <path d="M50,90 Q70,70 90,90" fill="none" stroke="#2563eb" stroke-width="3"/>
+                                            <path d="M110,90 L120,100 L130,50 L140,120 L150,90" fill="none" stroke="#ef4444" stroke-width="3"/>
+                                            <path d="M160,90 Q185,60 210,90" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                            <line x1="110" y1="115" x2="210" y2="115" stroke="#333" stroke-width="2"/>
+                                            <text x="125" y="135" font-size="12">QTc alto</text>
+                                        </svg>
+                                        <p class="small mb-0">Riesgo de arritmias</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info mt-3 mb-0">
+                            Correlación clínica: PR prolongado (bloqueo AV), QRS ancho (bloqueo de rama), QT prolongado (fármacos/electrolitos/congénito), ST alterado (isquemia/lesión).
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
+    <!-- Bootstrap JS + Tu app -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
