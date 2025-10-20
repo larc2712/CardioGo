@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos Básicos - ECG Assist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ECG Assist</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="conceptos-basicos.html">Conceptos Básicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Conceptos Básicos de ECG</h1>
+        <p class="lead">Módulo educativo que explica cómo leer un ECG paso a paso.</p>
+
+        <div class="accordion" id="conceptosBasicosAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Sistema de conducción cardíaca
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#conceptosBasicosAccordion">
+                    <div class="accordion-body">
+                        <p>Explicación de nodo SA, nodo AV, haz de His, ramas, fibras de Purkinje.</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Conductionsystemoftheheart.png/300px-Conductionsystemoftheheart.png" alt="Sistema de conducción cardíaca" class="img-fluid mb-3">
+                        <p>El sistema de conducción cardíaca es una red especializada de células que generan y conducen impulsos eléctricos a través del corazón, coordinando su contracción. Los componentes principales son:</p>
+                        <ul>
+                            <li><strong>Nodo Sinoauricular (SA):</strong> El marcapasos natural del corazón, ubicado en la aurícula derecha.</li>
+                            <li><strong>Nodo Auriculoventricular (AV):</strong> Retrasa el impulso eléctrico antes de pasar a los ventrículos.</li>
+                            <li><strong>Haz de His

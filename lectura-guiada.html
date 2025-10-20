@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Guiada - ECG Assist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ECG Assist</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="lectura-guiada.html">Lectura Guiada</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Lectura Guiada de ECG</h1>
+        <p class="lead">Complete el siguiente formulario para realizar una lectura sistemática del ECG.</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <form id="ecgForm" class="mb-4">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="bienTomado">
+                        <label class="form-check-label" for="bienTomado">ECG bien tomado</label>
+                        <small class="form-text text-muted d-block">Verificar calibración (10 mm/mV) y velocidad (25 mm/s), ausencia de artefactos.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ritmo" class="form-label">Ritmo</label>
+                        <select class="form-select" id="ritmo">
+                            <option value="">Seleccione...</option>
+                            <option value="Sinusal">Sinusal</option>
+                            <option value="No sinusal">No sinusal</option>
+                            <option value="Fibrilación auricular">Fibrilación auricular</option>
+                            <option value="Flutter auricular">Flutter auricular</option>
+                            <option value="Ritmo nodal">Ritmo nodal</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                        <small class="form-text text-muted">Ritmo sinusal: onda P positiva en DII, relación P-QRS 1:1, frecuencia regular.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="frecuencia" class="form-label">Frecuencia cardíaca (lpm)</label>
+                        <input type="number" class="form-control" id="frecuencia" min="20" max="300">
+                        <small class="form-text text-muted">Normal: 60–100 lpm. Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="eje" class="form-label">Eje</label>
+                        <select class="form-select" id="eje">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Desviación izquierda">Desviación izquierda</option>
+                            <option value="Desviación derecha">Desviación derecha</option>
+                            <option value="Eje indeterminado">Eje indeterminado</option>
+                        </select>
+                        <small class="form-text text-muted">Eje normal: entre -30° y +90°.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pr" class="form-label">Intervalo PR (ms)</label>
+                        <input type="number" class="form-control" id="pr" min="80" max="400">
+                        <small class="form-text text-muted">Normal: 120–200 ms. Medir desde el inicio de la onda P hasta el inicio del QRS.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ondaP" class="form-label">Onda P</label>
+                        <input type="text" class="form-control" id="ondaP">
+                        <small class="form-text text-muted">Normal: duración &lt;120 ms, amplitud &lt;2.5 mm en derivaciones frontales.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qrs" class="form-label">Complejo QRS (ms)</label>
+                        <input type="number" class="form-control" id="qrs" min="60" max="200">
+                        <small class="form-text text-muted">Normal: &lt;120 ms. Medir desde el inicio de la onda Q hasta el final de la onda S.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="st" class="form-label">Segmento ST</label>
+                        <input type="text" class="form-control" id="st">
+                        <small class="form-text text-muted">Debe ser isoeléctrico; elevación o depresión sugiere isquemia o lesión.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ondaT" class="form-label">Onda T</label>
+                        <input type="text" class="form-control" id="ondaT">
+                        <small class="form-text text-muted">Debe ser positiva en la mayoría de derivaciones excepto aVR; inversión puede indicar isquemia.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qt" class="form-label">Intervalo QT (ms)</label>
+                        <input type="number" class="form-control" id="qt" min="300" max="600">
+                        <small class="form-text text-muted">QTc &lt; 440 ms (H), &lt; 460 ms (M). QTc prolongado puede predisponer a arritmias ventriculares.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="alteraciones" class="form-label">Alteraciones adicionales</label>
+                        <textarea class="form-control" id="alteraciones" rows="3"></textarea>
+                        <small class="form-text text-muted">Ej: bloqueos, arritmias, signos de necrosis, crecimiento auricular o ventricular.</small>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="generarInforme">Generar informe</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Informe ECG
+                    </div>
+                    <div class="card-body">
+                        <div id="informeECG" class="mb-3">
+                            Complete el formulario y haga clic en "Generar informe" para ver el resultado.
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="copiarInforme">Copiar informe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

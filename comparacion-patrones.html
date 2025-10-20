@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Patrones - ECG Assist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ECG Assist</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="comparacion-patrones.html">Comparación de Patrones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Comparación de Patrones ECG</h1>
+        <p class="lead">Tome una fotografía de un ECG y compare con patrones conocidos.</p>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Capturar ECG
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="ecgFile" class="form-label">Seleccionar imagen de ECG</label>
+                            <input class="form-control" type="file" id="ecgFile" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary me-2" id="tomarFoto">Tomar fotografía</button>
+                            <button type="button" class="btn btn-secondary" id="subirImagen">Subir imagen</button>
+                        </div>
+                        <div class="mb-3">
+                            <div id="previewContainer" class="d-none">
+                                <h5>Vista previa:</h5>
+                                <img id="ecgPreview" class="img-fluid border" alt="Vista previa del ECG">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Análisis y comparación
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary" id="analizarECG" disabled>Analizar ECG</button>
+                        </div>
+                        <div id="resultadoAnalisis" class="d-none">
+                            <h5>Resultados del análisis:</h5>
+                            <div class="alert alert-info">
+                                <p>El análisis de patrones sugiere las siguientes posibilidades:</p>
+                                <ul id="listaPatrones">
+                                    <li>Cargando resultados...</li>
+                                </ul>
+                            </div>
+                            <h5>Recursos adicionales:</h5>
+                            <ul>
+                                <li><a href="https://physionet.org/" target="_blank">PhysioNet</a> - Base de datos de señales fisiológicas</li>
+                                <li><a href="https://ecgwaves.com/" target="_blank">ECG Waves</a> - Biblioteca de ECG con explicaciones</li>
+                                <li><a href="https://litfl.com/ecg-library/" target="_blank">Life in the Fast Lane ECG Library</a> - Biblioteca de casos clínicos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Biblioteca de patrones comunes
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="https://litfl.com/wp-content/uploads/2018/08/normal-sinus-rhythm-ecg.jpg" class="card-img-top" alt="Ritmo sinusal normal">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Ritmo sinusal normal</h5>
+                                        <p class="card-text">Frecuencia 60-100 lpm, intervalo PR normal, QRS estrecho.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="https://litfl.com/wp-content/uploads/2018/08/ECG-Atrial-Fibrillation-Coarse.jpg" class="card-img-top" alt="Fibrilación auricular">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Fibrilación auricular</h5>
+                                        <p class="card-text">Ausencia de ondas P, línea de base irregular, QRS a intervalos irregulares.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="https://litfl.com/wp-content/uploads/2018/08/ECG-ST-elevation-acute-anterior-STEMI.jpg" class="card-img-top" alt="Infarto agudo de miocardio">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Infarto agudo de miocardio</h5>
+                                        <p class="card-text">Elevación del segmento ST, ondas Q patológicas, inversión de onda T.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

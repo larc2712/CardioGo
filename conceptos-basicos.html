@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos Básicos - ECG Assist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ECG Assist</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="conceptos-basicos.html">Conceptos Básicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Conceptos Básicos de ECG</h1>
+        <p class="lead">Módulo educativo que explica cómo leer un ECG paso a paso.</p>
+
+        <div class="accordion" id="conceptosBasicosAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Sistema de conducción cardíaca
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#conceptosBasicosAccordion">
+                    <div class="accordion-body">
+                        <p>Explicación de nodo SA, nodo AV, haz de His, ramas, fibras de Purkinje.</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Conductionsystemoftheheart.png/300px-Conductionsystemoftheheart.png" alt="Sistema de conducción cardíaca" class="img-fluid mb-3">
+                        <p>El sistema de conducción cardíaca es una red especializada de células que generan y conducen impulsos eléctricos a través del corazón, coordinando su contracción. Los componentes principales son:</p>
+                        <ul>
+                            <li><strong>Nodo Sinoauricular (SA):</strong> El marcapasos natural del corazón, ubicado en la aurícula derecha.</li>
+                            <li><strong>Nodo Auriculoventricular (AV):</strong> Retrasa el impulso eléctrico antes de pasar a los ventrículos.</li>
+                            <li><strong>Haz de His:</strong> Conduce el impulso desde el nodo AV hacia los ventrículos.</li>
+                            <li><strong>Ramas del Haz:</strong> Dividen el impulso hacia los ventrículos derecho e izquierdo.</li>
+                            <li><strong>Fibras de Purkinje:</strong> Distribuyen rápidamente el impulso a través del miocardio ventricular.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        Papel electrocardiográfico
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#conceptosBasicosAccordion">
+                    <div class="accordion-body">
+                        <p>Cada cuadro pequeño equivale a 0.04 s en el eje horizontal y 0.1 mV en el eje vertical.</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/EKG_Grid.svg/300px-EKG_Grid.svg.png" alt="Papel electrocardiográfico" class="img-fluid mb-3">
+                        <p>El papel de ECG está diseñado con una cuadrícula estandarizada para facilitar la medición precisa:</p>
+                        <ul>
+                            <li>Cuadros pequeños: 1 mm × 1 mm</li>
+                            <li>Cuadros grandes: 5 mm × 5 mm (formados por 5 cuadros pequeños)</li>
+                            <li>Eje horizontal (tiempo): cada cuadro pequeño = 0.04 segundos</li>
+                            <li>Eje vertical (voltaje): cada cuadro pequeño = 0.1 mV</li>
+                            <li>Velocidad estándar: 25 mm/segundo</li>
+                            <li>Calibración estándar: 10 mm/mV</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Derivaciones
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#conceptosBasicosAccordion">
+                    <div class="accordion-body">
+                        <p>Derivaciones bipolares (DI, DII, DIII), unipolares (aVR, aVL, aVF) y precordiales (V1–V6).</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/EKG_leads_and_axis.svg/300px-EKG_leads_and_axis.svg.png" alt="Derivaciones ECG" class="img-fluid mb-3">
+                        <p>Las derivaciones del ECG son diferentes "vistas" de la actividad eléctrica del corazón:</p>
+                        <h5>Derivaciones del plano frontal:</h5>
+                        <ul>
+                            <li><strong>Derivaciones bipolares (Einthoven):</strong> DI, DII, DIII</li>
+                            <li><strong>Derivaciones unipolares aumentadas:</strong> aVR, aVL, aVF</li>
+                        </ul>
+                        <h5>Derivaciones del plano horizontal:</h5>
+                        <ul>
+                            <li><strong>Derivaciones precordiales:</strong> V1, V2, V3, V4, V5, V6</li>
+                        </ul>
+                        <p>Cada derivación proporciona información sobre diferentes áreas del corazón.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                        Frecuencia cardíaca
+                    </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#conceptosBasicosAccordion">
+                    <div class="accordion-body">
+                        <p>Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número.</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/SinusRhythmLabels.svg/300px-SinusRhythmLabels.svg.png" alt="Frecuencia cardíaca" class="img-fluid mb-3">
+                        <p>Métodos para calcular la frecuencia cardíaca:</p>
+                        <ol>
+                            <li><strong>Método de 1500:</strong> Contar el número de cuadros pequeños entre dos complejos QRS consecutivos y dividir 1500 por ese número.</li>
+                            <li><strong>Método de 300:</strong> Contar el número de cuadros grandes entre dos complejos QRS consecutivos y dividir 300 por ese número.</li>
+                            <li><strong>Método de 6 segundos:</strong> Contar el número de complejos QRS en un intervalo de 30 cuadros grandes (6 segundos) y multiplicar por 10.</li>
+                        </ol>
+                        <p>Frecuencia normal: 60-100 latidos por minuto (lpm)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        Intervalos normales
+                    </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#conceptosBasicosAccordion">
+                    <div class="accordion-body">
+                        <p>PR: 120–200 ms, QRS: &lt;120 ms, QT corregido: &lt;440 ms en hombres y &lt;460 ms en mujeres.</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/EKG_Complex_en.svg/300px-EKG_Complex_en.svg.png" alt="Intervalos ECG" class="img-fluid mb-3">
+                        <p>Los intervalos normales en un ECG son:</p>
+                        <ul>
+                            <li><strong>Intervalo PR:</strong> 120-200 ms (3-5 cuadros pequeños)</li>
+                            <li><strong>Complejo QRS:</strong> &lt;120 ms (&lt;3 cuadros pequeños)</li>
+                            <li><strong>Intervalo QT:</strong> Varía con la frecuencia cardíaca</li>
+                            <li><strong>QT corregido (QTc):</strong> &lt;440 ms en hombres, &lt;460 ms en mujeres</li>
+                            <li><strong>Segmento ST:</strong> Isoeléctrico (al mismo nivel que la línea de base)</li>
+                        </ul>
+                        <p>Alteraciones en estos intervalos pueden indicar diversas patologías cardíacas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
