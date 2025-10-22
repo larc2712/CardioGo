@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const analizarECGBtn = document.getElementById('analizarECG');
         analizarECGBtn.addEventListener('click', analizarECG);
         
-        // Nuevos botones para análisis con ChatGPT y búsqueda de imágenes similares
         const enviarChatGPTBtn = document.getElementById('enviarChatGPT');
         if (enviarChatGPTBtn) {
             enviarChatGPTBtn.addEventListener('click', enviarAChatGPT);
@@ -33,11 +32,32 @@ document.addEventListener('DOMContentLoaded', function() {
             buscarImagenesSimilaresBtn.addEventListener('click', buscarImagenesSimilares);
         }
         
-        // Botón para guardar análisis como PDF
         const guardarAnalisisPDFBtn = document.getElementById('guardarAnalisisPDF');
         if (guardarAnalisisPDFBtn) {
             guardarAnalisisPDFBtn.addEventListener('click', guardarAnalisisPDF);
         }
+    }
+
+    // Compatibilidad con la nueva versión de "Comparación de Patrones" (IDs V2)
+    const ecgFileInput = document.getElementById('ecgFileInput');
+    const btnCapturar = document.getElementById('btnCapturar');
+    if (btnCapturar && ecgFileInput) {
+        btnCapturar.addEventListener('click', capturarDesdeArchivoV2);
+
+        const btnLimpiarCaptura = document.getElementById('btnLimpiarCaptura');
+        if (btnLimpiarCaptura) btnLimpiarCaptura.addEventListener('click', limpiarCapturaV2);
+
+        const btnAnalisisLocal = document.getElementById('btnAnalisisLocal');
+        if (btnAnalisisLocal) btnAnalisisLocal.addEventListener('click', analizarECG_V2);
+
+        const btnAnalisisChatGPT = document.getElementById('btnAnalisisChatGPT');
+        if (btnAnalisisChatGPT) btnAnalisisChatGPT.addEventListener('click', enviarAChatGPT_V2);
+
+        const btnAnalisisSimilares = document.getElementById('btnAnalisisSimilares');
+        if (btnAnalisisSimilares) btnAnalisisSimilares.addEventListener('click', buscarImagenesSimilares_V2);
+
+        const savePdfBtn = document.getElementById('savePdfBtn');
+        if (savePdfBtn) savePdfBtn.addEventListener('click', guardarAnalisisPDF);
     }
 
     // Verificar si estamos en la página de copiar informe
@@ -344,4 +364,163 @@ function guardarAnalisisPDF() {
     // En una aplicación real, aquí se generaría un PDF con el análisis
     // Para esta demo, mostraremos un mensaje de simulación
     alert('Funcionalidad de guardar como PDF simulada. En una aplicación real, se generaría un PDF con el análisis completo.');
+}
+
+// Funciones V2 para la nueva versión de "Comparación de Patrones"
+function capturarDesdeArchivoV2() {
+    const fileInput = document.getElementById('ecgFileInput');
+    const file = fileInput && fileInput.files[0];
+    if (!file) {
+        alert('Selecciona una imagen de ECG desde el selector.');
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const previewContainer = document.getElementById('vistaPrevia');
+        if (!previewContainer) return;
+        previewContainer.classList.remove('d-none');
+        previewContainer.innerHTML = '';
+        const imgElement = document.createElement('img');
+        imgElement.id = 'ecgPreview';
+        imgElement.src = e.target.result;
+        imgElement.classList.add('img-fluid', 'border');
+        imgElement.alt = 'ECG subido';
+        previewContainer.appendChild(imgElement);
+        ['btnAnalisisLocal', 'btnAnalisisChatGPT', 'btnAnalisisSimilares'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.disabled = false;
+        });
+    };
+    reader.readAsDataURL(file);
+}
+
+function limpiarCapturaV2() {
+    const previewContainer = document.getElementById('vistaPrevia');
+    if (previewContainer) {
+        previewContainer.classList.add('d-none');
+        previewContainer.innerHTML = '';
+    }
+    ['btnAnalisisLocal', 'btnAnalisisChatGPT', 'btnAnalisisSimilares'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.disabled = true;
+    });
+    ['resultadoLocal', 'resultadoChatGPT', 'resultadoSimilares'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('d-none');
+    });
+}
+
+function analizarECG_V2() {
+    const resultadoLocal = document.getElementById('resultadoLocal');
+    const resultadoChatGPT = document.getElementById('resultadoChatGPT');
+    const resultadoSimilares = document.getElementById('resultadoSimilares');
+    if (resultadoLocal) {
+        resultadoLocal.classList.remove('d-none');
+        resultadoLocal.innerHTML = '<div class="alert alert-secondary">Analizando imagen...</div>';
+    }
+    if (resultadoChatGPT) resultadoChatGPT.classList.add('d-none');
+    if (resultadoSimilares) resultadoSimilares.classList.add('d-none');
+    setTimeout(() => {
+        if (resultadoLocal) {
+            resultadoLocal.innerHTML = `
+                <ul class="mb-0">
+                    <li><strong>Alta probabilidad (85%):</strong> Ritmo sinusal normal</li>
+                    <li><strong>Probabilidad media (45%):</strong> Posible hipertrofia ventricular izquierda</li>
+                    <li><strong>Baja probabilidad (25%):</strong> Alteraciones inespecíficas de la repolarización</li>
+                </ul>
+            `;
+        }
+    }, 2000);
+}
+
+function enviarAChatGPT_V2() {
+    const resultadoLocal = document.getElementById('resultadoLocal');
+    const resultadoChatGPT = document.getElementById('resultadoChatGPT');
+    const resultadoSimilares = document.getElementById('resultadoSimilares');
+    if (resultadoChatGPT) {
+        resultadoChatGPT.classList.remove('d-none');
+        resultadoChatGPT.innerHTML = `
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+                <p class="mt-2">Consultando a ChatGPT...</p>
+            </div>
+        `;
+    }
+    if (resultadoLocal) resultadoLocal.classList.add('d-none');
+    if (resultadoSimilares) resultadoSimilares.classList.add('d-none');
+
+    setTimeout(() => {
+        const resumen = `
+            <h5>Análisis del ECG:</h5>
+            <p>Basado en la imagen proporcionada, este ECG muestra un <strong>ritmo sinusal normal</strong> con una frecuencia cardíaca de aproximadamente 75 latidos por minuto.</p>
+            <h5>Características observadas:</h5>
+            <ul>
+                <li>Ondas P antes de cada QRS</li>
+                <li>Intervalo PR normal (~160 ms)</li>
+                <li>Duración del QRS normal (~90 ms)</li>
+                <li>Sin cambios significativos del ST</li>
+                <li>Ondas T de morfología normal</li>
+            </ul>
+            <h5>Interpretación:</h5>
+            <p>ECG dentro de límites normales. Correlacionar con clínica.</p>
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#chatGPTModal">Ver análisis completo</button>
+        `;
+        if (resultadoChatGPT) resultadoChatGPT.innerHTML = resumen;
+        const modalBody = document.getElementById('chatGPTModalBody');
+        if (modalBody) {
+            modalBody.innerHTML = resumen + `
+                <h5 class="mt-4">Diagnóstico diferencial:</h5>
+                <ul>
+                    <li>ECG normal</li>
+                    <li>Variante normal</li>
+                    <li>Cambios inespecíficos</li>
+                </ul>
+                <h5>Recomendaciones:</h5>
+                <ul>
+                    <li>Si es de rutina y asintomático, sin estudios adicionales.</li>
+                    <li>Si hay síntomas, evaluar según presentación clínica.</li>
+                    <li>Seguimiento según riesgos cardiovasculares.</li>
+                </ul>
+                <div class="alert alert-info mt-3">
+                    <strong>Nota:</strong> Análisis generado por IA. No sustituye evaluación médica.
+                </div>
+            `;
+        }
+    }, 3000);
+}
+
+function buscarImagenesSimilares_V2() {
+    const resultadoLocal = document.getElementById('resultadoLocal');
+    const resultadoChatGPT = document.getElementById('resultadoChatGPT');
+    const resultadoSimilares = document.getElementById('resultadoSimilares');
+    if (resultadoSimilares) {
+        resultadoSimilares.classList.remove('d-none');
+        resultadoSimilares.innerHTML = `
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Buscando imágenes similares...</span>
+                </div>
+                <p class="mt-2">Buscando patrones similares...</p>
+            </div>
+        `;
+    }
+    if (resultadoLocal) resultadoLocal.classList.add('d-none');
+    if (resultadoChatGPT) resultadoChatGPT.classList.add('d-none');
+
+    setTimeout(() => {
+        if (resultadoSimilares) {
+            resultadoSimilares.innerHTML = `
+                <div class="alert alert-warning">
+                    <strong>Resultados simulados:</strong>
+                    <ul class="mb-0">
+                        <li>Ritmo sinusal normal — coincidencia 92%</li>
+                        <li>Bradicardia sinusal — coincidencia 78%</li>
+                        <li>Bloqueo de rama izquierda — coincidencia 65%</li>
+                    </ul>
+                </div>
+            `;
+        }
+    }, 3000);
 }

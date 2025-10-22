@@ -1,189 +1,392 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparación de Patrones - CardioGo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CardioGo — Comparación de Patrones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">CardioGo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="comparacion-patrones.html">Comparación de Patrones</a>
-                    </li>
+<nav class="navbar navbar-expand-lg ao-topbar">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">CardioGo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarComparacion"
+                aria-controls="navbarComparacion" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarComparacion" class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                <li class="nav-item"><a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a></li>
+                <li class="nav-item"><a class="nav-link active" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container my-4">
+    <section class="ao-hero mb-4">
+        <h1 class="ao-hero-title display-6">Patrones Electrocardiográficos Comunes</h1>
+        <p class="ao-hero-subtitle lead">Catálogo con ejemplos visuales, criterios y breve descripción clínica.</p>
+    </section>
+
+    <section class="ao-content">
+        <!-- 1. Fibrilación auricular (FA) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">1. Fibrilación auricular (FA)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Arritmia sostenida con riesgo de eventos tromboembólicos; valorar anticoagulación.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Ondas P ausentes</li>
+                    <li>Línea isoeléctrica ondulada</li>
+                    <li>Ritmo irregularmente irregular</li>
                 </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container mt-4">
-        <h1 class="mb-4">Comparación de Patrones ECG</h1>
-        <p class="lead">Tome una fotografía de un ECG y obtenga un análisis con ayuda de IA.</p>
-
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        Capturar ECG
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="ecgFile" class="form-label">Seleccionar imagen de ECG</label>
-                            <input class="form-control" type="file" id="ecgFile" accept="image/*">
-                        </div>
-                        <div class="mb-3">
-                            <button type="button" class="btn btn-primary me-2" id="tomarFoto">Tomar fotografía</button>
-                            <button type="button" class="btn btn-secondary" id="subirImagen">Subir imagen</button>
-                        </div>
-                        <div class="mb-3">
-                            <div id="previewContainer" class="d-none">
-                                <h5>Vista previa:</h5>
-                                <img id="ecgPreview" class="img-fluid border" alt="Vista previa del ECG">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        Análisis y comparación
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-primary" id="analizarECG" disabled>Analizar ECG localmente</button>
-                                <button type="button" class="btn btn-success" id="enviarChatGPT" disabled>Analizar con ChatGPT</button>
-                                <button type="button" class="btn btn-info" id="buscarImagenesSimilares" disabled>Buscar imágenes similares</button>
-                            </div>
-                        </div>
-                        <div id="resultadoAnalisis" class="d-none">
-                            <h5>Resultados del análisis:</h5>
-                            <div class="alert alert-info">
-                                <p>El análisis de patrones sugiere las siguientes posibilidades:</p>
-                                <ul id="listaPatrones">
-                                    <li>Cargando resultados...</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="chatGPTAnalisis" class="d-none">
-                            <h5>Análisis de ChatGPT:</h5>
-                            <div class="alert alert-success">
-                                <div id="chatGPTRespuesta">
-                                    <div class="spinner-border text-primary" role="status">
-                                        <span class="visually-hidden">Cargando...</span>
-                                    </div>
-                                    <p>Consultando a ChatGPT...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="imagenesEncontradas" class="d-none">
-                            <h5>Imágenes similares encontradas:</h5>
-                            <div id="galeriaImagenes" class="row">
-                                <!-- Las imágenes similares se cargarán aquí -->
-                            </div>
-                        </div>
-                    </div>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/fibrilacion-auricular-1.jpg" alt="FA ejemplo 1"><figcaption class="small text-muted mt-1">FA — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/fibrilacion-auricular-2.jpg" alt="FA ejemplo 2"><figcaption class="small text-muted mt-1">FA — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/fibrilacion-auricular-3.jpg" alt="FA ejemplo 3"><figcaption class="small text-muted mt-1">FA — ejemplo 3</figcaption></figure></div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 mb-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        Recursos y referencias
-                    </div>
-                    <div class="card-body">
-                        <h5>Recursos adicionales:</h5>
-                        <ul>
-                            <li><a href="https://physionet.org/" target="_blank">PhysioNet</a> - Base de datos de señales fisiológicas</li>
-                            <li><a href="https://ecgwaves.com/" target="_blank">ECG Waves</a> - Biblioteca de ECG con explicaciones</li>
-                            <li><a href="https://litfl.com/ecg-library/" target="_blank">Life in the Fast Lane ECG Library</a> - Biblioteca de casos clínicos</li>
-                        </ul>
-                    </div>
+        <!-- 2. Flutter auricular -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">2. Flutter auricular</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Arritmia macroreentrante auricular; puede requerir cardioversión o ablación.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Ondas “en dientes de sierra”</li>
+                    <li>Frecuencia auricular ~300 lpm</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/flutter-auricular-1.jpg" alt="Flutter ejemplo 1"><figcaption class="small text-muted mt-1">Flutter — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/flutter-auricular-2.jpg" alt="Flutter ejemplo 2"><figcaption class="small text-muted mt-1">Flutter — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/flutter-auricular-3.jpg" alt="Flutter ejemplo 3"><figcaption class="small text-muted mt-1">Flutter — ejemplo 3</figcaption></figure></div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        Biblioteca de patrones comunes
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <img src="https://litfl.com/wp-content/uploads/2018/08/normal-sinus-rhythm-ecg.jpg" class="card-img-top" alt="Ritmo sinusal normal">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Ritmo sinusal normal</h5>
-                                        <p class="card-text">Frecuencia 60-100 lpm, intervalo PR normal, QRS estrecho.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <img src="https://litfl.com/wp-content/uploads/2018/08/ECG-Atrial-Fibrillation-Coarse.jpg" class="card-img-top" alt="Fibrilación auricular">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Fibrilación auricular</h5>
-                                        <p class="card-text">Ausencia de ondas P, línea de base irregular, QRS a intervalos irregulares.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <img src="https://litfl.com/wp-content/uploads/2018/08/ECG-ST-elevation-acute-anterior-STEMI.jpg" class="card-img-top" alt="Infarto agudo de miocardio">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Infarto agudo de miocardio</h5>
-                                        <p class="card-text">Elevación del segmento ST, ondas Q patológicas, inversión de onda T.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- 3. Taquicardia supraventricular (TSV) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">3. Taquicardia supraventricular (TSV)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Reentradas AV/AVN; puede responder a maniobras vagales o adenosina.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS estrecho</li>
+                    <li>Frecuencia &gt;150 lpm</li>
+                    <li>Inicio/terminación súbitos</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/taquicardia-supraventricular-1.jpg" alt="TSV ejemplo 1"><figcaption class="small text-muted mt-1">TSV — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/taquicardia-supraventricular-2.jpg" alt="TSV ejemplo 2"><figcaption class="small text-muted mt-1">TSV — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/taquicardia-supraventricular-3.jpg" alt="TSV ejemplo 3"><figcaption class="small text-muted mt-1">TSV — ejemplo 3</figcaption></figure></div>
                 </div>
+            </div>
+        </div>
+
+        <!-- 4. Taquicardia ventricular (TV) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">4. Taquicardia ventricular (TV)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Origen ventricular; puede comprometer hemodinámica; atención urgente.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS ancho (&gt;120 ms)</li>
+                    <li>Ritmo regular</li>
+                    <li>Sin ondas P claras</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/taquicardia-ventricular-1.jpg" alt="TV ejemplo 1"><figcaption class="small text-muted mt-1">TV — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/taquicardia-ventricular-2.jpg" alt="TV ejemplo 2"><figcaption class="small text-muted mt-1">TV — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/taquicardia-ventricular-3.jpg" alt="TV ejemplo 3"><figcaption class="small text-muted mt-1">TV — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Fibrilación ventricular (FV) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">5. Fibrilación ventricular (FV)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Paro cardiaco; requiere desfibrilación inmediata.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Sin QRS definido</li>
+                    <li>Actividad caótica</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/fibrilacion-ventricular-1.jpg" alt="FV ejemplo 1"><figcaption class="small text-muted mt-1">FV — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/fibrilacion-ventricular-2.jpg" alt="FV ejemplo 2"><figcaption class="small text-muted mt-1">FV — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/fibrilacion-ventricular-3.jpg" alt="FV ejemplo 3"><figcaption class="small text-muted mt-1">FV — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Bloqueo AV de primer grado -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">6. Bloqueo AV de primer grado</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Conducción AV enlentecida; suele ser benigno.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul><li>Intervalo PR &gt;200 ms</li></ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-primer-grado-1.jpg" alt="BAV I ejemplo 1"><figcaption class="small text-muted mt-1">BAV I — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-primer-grado-2.jpg" alt="BAV I ejemplo 2"><figcaption class="small text-muted mt-1">BAV I — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-primer-grado-3.jpg" alt="BAV I ejemplo 3"><figcaption class="small text-muted mt-1">BAV I — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Bloqueo AV de segundo grado (Mobitz I y II) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">7. Bloqueo AV de segundo grado (Mobitz I y II)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Riesgo variable; Mobitz II tiene mayor gravedad.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Mobitz I: alargamiento progresivo del PR hasta caída de QRS</li>
+                    <li>Mobitz II: PR fijo con QRS ausentes intermitentes</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-mobitz-i-1.jpg" alt="Mobitz I ejemplo 1"><figcaption class="small text-muted mt-1">Mobitz I — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-mobitz-ii-1.jpg" alt="Mobitz II ejemplo 1"><figcaption class="small text-muted mt-1">Mobitz II — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-segundo-grado-3.jpg" alt="BAV II ejemplo 2"><figcaption class="small text-muted mt-1">BAV II — ejemplo 2</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Bloqueo AV completo (tercer grado) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">8. Bloqueo AV completo (tercer grado)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Disociación AV con ritmo de escape; frecuentemente requiere marcapasos.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Disociación entre ondas P y QRS</li>
+                    <li>Ritmo de escape</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-tercer-grado-1.jpg" alt="BAV III ejemplo 1"><figcaption class="small text-muted mt-1">BAV III — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-tercer-grado-2.jpg" alt="BAV III ejemplo 2"><figcaption class="small text-muted mt-1">BAV III — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/bloqueo-av-tercer-grado-3.jpg" alt="BAV III ejemplo 3"><figcaption class="small text-muted mt-1">BAV III — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Bloqueo de rama derecha (BRDHH) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">9. Bloqueo de rama derecha (BRDHH)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Puede ser hallazgo benigno o asociarse a otras patologías.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS ≥120 ms</li>
+                    <li>Patrón rSR’ en V1</li>
+                    <li>S ancha en I y V6</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/brdhh-1.jpg" alt="BRDHH ejemplo 1"><figcaption class="small text-muted mt-1">BRDHH — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/brdhh-2.jpg" alt="BRDHH ejemplo 2"><figcaption class="small text-muted mt-1">BRDHH — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/brdhh-3.jpg" alt="BRDHH ejemplo 3"><figcaption class="small text-muted mt-1">BRDHH — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Bloqueo de rama izquierda (BRIHH) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">10. Bloqueo de rama izquierda (BRIHH)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Interfiere con diagnóstico de isquemia; puede sugerir enfermedad estructural.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS ≥120 ms</li>
+                    <li>Ausencia de q en I y V6</li>
+                    <li>R ancha y empastada</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/brihh-1.jpg" alt="BRIHH ejemplo 1"><figcaption class="small text-muted mt-1">BRIHH — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/brihh-2.jpg" alt="BRIHH ejemplo 2"><figcaption class="small text-muted mt-1">BRIHH — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/brihh-3.jpg" alt="BRIHH ejemplo 3"><figcaption class="small text-muted mt-1">BRIHH — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. IAM con elevación del ST (STEMI) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">11. Infarto agudo de miocardio (IAM) con elevación del ST (STEMI)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Oclusión coronaria aguda; requiere reperfusión urgente.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul><li>Elevación del ST ≥1 mm en derivaciones contiguas</li></ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/stemi-1.jpg" alt="STEMI ejemplo 1"><figcaption class="small text-muted mt-1">STEMI — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/stemi-2.jpg" alt="STEMI ejemplo 2"><figcaption class="small text-muted mt-1">STEMI — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/stemi-3.jpg" alt="STEMI ejemplo 3"><figcaption class="small text-muted mt-1">STEMI — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. Isquemia subendocárdica / depresión del ST (NSTEMI) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">12. Isquemia subendocárdica / depresión del ST (NSTEMI)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Isquemia sin elevación del ST; manejo según estratificación de riesgo.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Descenso del ST</li>
+                    <li>Inversión de la onda T</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/nstemi-1.jpg" alt="NSTEMI ejemplo 1"><figcaption class="small text-muted mt-1">NSTEMI — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/nstemi-2.jpg" alt="NSTEMI ejemplo 2"><figcaption class="small text-muted mt-1">NSTEMI — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/nstemi-3.jpg" alt="NSTEMI ejemplo 3"><figcaption class="small text-muted mt-1">NSTEMI — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. Hipertrofia ventricular izquierda (HVI) -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">13. Hipertrofia ventricular izquierda (HVI)</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Sobrecarga de presión; común en hipertensión arterial.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul><li>Sokolow-Lyon: S(V1) + R(V5/V6) &gt;35 mm</li></ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hvi-1.jpg" alt="HVI ejemplo 1"><figcaption class="small text-muted mt-1">HVI — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hvi-2.jpg" alt="HVI ejemplo 2"><figcaption class="small text-muted mt-1">HVI — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hvi-3.jpg" alt="HVI ejemplo 3"><figcaption class="small text-muted mt-1">HVI — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14. Hiperkalemia -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">14. Hiperkalemia</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Trastorno electrolítico potencialmente fatal; tratar de urgencia.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Onda T picuda</li>
+                    <li>QRS ancho</li>
+                    <li>PR prolongado</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hiperkalemia-1.jpg" alt="Hiperkalemia ejemplo 1"><figcaption class="small text-muted mt-1">Hiperkalemia — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hiperkalemia-2.jpg" alt="Hiperkalemia ejemplo 2"><figcaption class="small text-muted mt-1">Hiperkalemia — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hiperkalemia-3.jpg" alt="Hiperkalemia ejemplo 3"><figcaption class="small text-muted mt-1">Hiperkalemia — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15. Hipokalemia -->
+        <div class="card ao-card mb-4">
+            <div class="card-header">15. Hipokalemia</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Riesgo de arritmias; corregir niveles de potasio.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Onda T aplanada</li>
+                    <li>Onda U prominente</li>
+                    <li>ST deprimido</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hipokalemia-1.jpg" alt="Hipokalemia ejemplo 1"><figcaption class="small text-muted mt-1">Hipokalemia — ejemplo 1</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hipokalemia-2.jpg" alt="Hipokalemia ejemplo 2"><figcaption class="small text-muted mt-1">Hipokalemia — ejemplo 2</figcaption></figure></div>
+                    <div class="col-md-4"><figure class="mb-0"><img class="img-fluid rounded border" src="/img/hipokalemia-3.jpg" alt="Hipokalemia ejemplo 3"><figcaption class="small text-muted mt-1">Hipokalemia — ejemplo 3</figcaption></figure></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Captura de ECG -->
+    <div class="card ao-card mb-4">
+        <div class="card-header">1. Captura de ECG</div>
+        <div class="card-body">
+            <p class="mb-2">Selecciona una imagen de ECG para previsualizar y analizar.</p>
+            <div class="row g-3 align-items-end">
+                <div class="col-md-6">
+                    <label for="ecgFileInput" class="form-label">Archivo de ECG (imagen)</label>
+                    <input type="file" class="form-control" id="ecgFileInput" accept="image/*">
+                </div>
+                <div class="col-md-6 d-flex gap-2">
+                    <button class="btn btn-primary" id="btnCapturar">Mostrar vista previa</button>
+                    <button class="btn btn-outline-secondary" id="btnLimpiarCaptura">Limpiar</button>
+                </div>
+            </div>
+            <div class="mt-3">
+                <img id="vistaPrevia" class="img-fluid rounded d-none" alt="Vista previa de ECG" width="1024" height="512">
             </div>
         </div>
     </div>
 
-    <!-- Modal para mostrar resultados de ChatGPT -->
-    <div class="modal fade" id="chatGPTModal" tabindex="-1" aria-labelledby="chatGPTModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="chatGPTModalLabel">Análisis detallado de ChatGPT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="chatGPTModalContent">
-                        <!-- El contenido del análisis de ChatGPT se mostrará aquí -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="guardarAnalisisPDF">Guardar como PDF</button>
-                </div>
+    <!-- Análisis local -->
+    <div class="card ao-card mb-4">
+        <div class="card-header">2. Análisis local</div>
+        <div class="card-body">
+            <p class="mb-2">Aplica reglas locales para detectar patrones comunes.</p>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary" id="btnAnalisisLocal">Analizar ECG (local)</button>
+                <button class="btn btn-outline-secondary" id="btnLimpiarLocal">Limpiar</button>
             </div>
+            <div id="resultadoLocal" class="alert alert-info mt-3 d-none"></div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script>
+    <!-- Análisis asistido con ChatGPT -->
+    <div class="card ao-card mb-4">
+        <div class="card-header">3. Análisis asistido</div>
+        <div class="card-body">
+            <p class="mb-2">Solicita un análisis detallado asistido por IA a partir de la imagen cargada.</p>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary" id="btnAnalisisChatGPT">Analizar con ChatGPT</button>
+                <button class="btn btn-outline-secondary" id="btnLimpiarChatGPT">Limpiar</button>
+            </div>
+            <div id="resultadoChatGPT" class="alert alert-info mt-3 d-none"></div>
+        </div>
+    </div>
+
+    <!-- Búsqueda de imágenes similares -->
+    <div class="card ao-card mb-4">
+        <div class="card-header">4. Búsqueda de imágenes similares</div>
+        <div class="card-body">
+            <p class="mb-2">Busca ejemplos con patrones similares para comparar.</p>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary" id="btnAnalisisSimilares">Buscar imágenes similares</button>
+                <button class="btn btn-outline-secondary" id="btnLimpiarSimilares">Limpiar</button>
+            </div>
+            <div id="resultadoSimilares" class="alert alert-info mt-3 d-none"></div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal: detalle de análisis asistido -->
+<div class="modal fade" id="chatGPTModal" tabindex="-1" aria-labelledby="chatGPTModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content rounded-ao shadow-ao">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chatGPTModalLabel">Análisis detallado (ChatGPT)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body" id="chatGPTModalBody">
+                <!-- Contenido dinámico desde app.js -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button class="btn btn-primary" id="savePdfBtn">Guardar análisis como PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container my-5">
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

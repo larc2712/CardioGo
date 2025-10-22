@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lectura Guiada - CardioGo</title>
+    <title>CardioGo — Lectura Guiada</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg ao-topbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">CardioGo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -30,11 +30,13 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h1 class="mb-4">Lectura Guiada de ECG</h1>
-        <p class="lead">Complete el siguiente formulario para realizar una lectura sistemática del ECG.</p>
+    <main class="container my-4">
+        <section class="ao-hero mb-4">
+            <h1 class="ao-hero-title display-6">Lectura Guiada de ECG</h1>
+            <p class="ao-hero-subtitle lead">Sigue el checklist en una interfaz uniforme.</p>
+        </section>
 
-        <div class="row">
+        <section class="ao-content">
             <div class="col-md-8">
                 <form id="ecgForm" class="mb-4">
                     <div class="mb-3 form-check">
@@ -140,3 +142,9 @@
     <script src="app.js"></script>
 </body>
 </html>
+
+<footer class="container my-5">
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>
